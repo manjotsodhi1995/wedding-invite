@@ -197,7 +197,7 @@ $(document).ready(function () {
             end: new Date('Dec 11, 2022 00:00'),
 
             // Event Address
-            address: 'ITC Fortune Park Hotel, Kolkata',
+            address: 'Grand King Resort Phagwara',
 
             // Event Description
             description: "We can't wait to see you on our big day. For any queries or issues, please contact Gurvinder Singh, Sehajdeep Singh at +91 9814043636 , +91 9803432657."
@@ -217,20 +217,41 @@ $(document).ready(function () {
         if (($('#invite_code').val()) !== '111222') {
             $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Your invite code is incorrect.'));
         } else {
-            $.post('https://script.google.com/macros/s/AKfycbzx5u6wfbHUtd1H2q-oD8gSik5lL3gxngokPtrv-FoiG1jCdrmuv_f9tt6ZZZ7DBT4kew/exec', data)
-                .done(function (data) {
+            
+            // $.post('https://script.google.com/macros/s/AKfycbzx5u6wfbHUtd1H2q-oD8gSik5lL3gxngokPtrv-FoiG1jCdrmuv_f9tt6ZZZ7DBT4kew/exec', data)
+            //     .done(function (data) {
+            //         console.log(data);
+            //         if (data.result === "error") {
+            //             $('#alert-wrapper').html(alert_markup('danger', data.message));
+            //         } else {
+            //             $('#alert-wrapper').html('');
+            //             $('#rsvp-modal').modal('show');
+            //         }
+            //     })
+                // .fail(function (data) {
+                //     console.log(data);
+                //     $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> There is some issue with the server. '));
+                // });
+                fetch("https://script.google.com/macros/s/AKfycbzx5u6wfbHUtd1H2q-oD8gSik5lL3gxngokPtrv-FoiG1jCdrmuv_f9tt6ZZZ7DBT4kew/exec", {
+                    redirect: "follow",
+                    method: "POST",
+                    body: JSON.stringify(data),
+                    headers: {
+                      "Content-Type": "text/plain;charset=utf-8",
+                    },
+                  }).then(()=>{
                     console.log(data);
-                    if (data.result === "error") {
-                        $('#alert-wrapper').html(alert_markup('danger', data.message));
-                    } else {
-                        $('#alert-wrapper').html('');
-                        $('#rsvp-modal').modal('show');
-                    }
-                })
-                .fail(function (data) {
-                    console.log(data);
+                            if (data.result === "error") {
+                                $('#alert-wrapper').html(alert_markup('danger', data.message));
+                            } else {
+                                $('#alert-wrapper').html('');
+                                $('#rsvp-modal').modal('show');
+                            }
+                      
+                  }).catch((error)=>{
+                    console.log(error)
                     $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> There is some issue with the server. '));
-                });
+                  })
         }
     });
 
