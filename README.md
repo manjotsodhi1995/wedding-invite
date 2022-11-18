@@ -1,6 +1,6 @@
 # Wedding Website
 A beautiful, feature rich, device friendly wedding website.  
-_See [wedding.msingh.co.in](http://wedding.msingh.co.in/) for a demo. Use invite code `111222` to RSVP._
+_See [https://manjotsodhi1995.github.io/wedding-invite/](https://manjotsodhi1995.github.io/wedding-invite/) for a demo. Use invite code `111222` to RSVP._
 
 # Highlights
 1. Slick and fully __responsive__ design.
